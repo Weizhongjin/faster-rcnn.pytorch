@@ -3,6 +3,9 @@ pip install -r requirements.txt
 cd lib
 python setup.py build develop
 cd ../data
+cd imagenet_weights
+python pretrain_model.py
+cd ..
 git clone https://github.com/pdollar/coco.git
 cd coco/PythonAPI
 make
@@ -17,4 +20,5 @@ rm trainval.txt
 wget https://s3.amazonaws.com/weizhongjin/txt.zip
 unzip txt.zip
 cd ../../../../..
+
 CUDA_VISIBLE_DEVICES=0 python trainval_net.py --dataset pascal_voc --net vgg16 --bs 12 --nw 1  --cuda
