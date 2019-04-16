@@ -1,4 +1,6 @@
-cd pytorch-faster-rcnn/lib
+cd lib
+mkdir data
+pip install -r requirements.txt
 python setup.py build develop
 cd ../data
 git clone https://github.com/pdollar/coco.git
