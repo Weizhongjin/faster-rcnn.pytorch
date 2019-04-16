@@ -1,12 +1,12 @@
-cd lib
 mkdir data
 pip install -r requirements.txt
+cd lib
 python setup.py build develop
 cd ../data
 git clone https://github.com/pdollar/coco.git
 cd coco/PythonAPI
 make
-cd ../../..
+cd ../..
 mkdir VOCdevkit2007
 cd VOCdevkit2007
 wget https://s3.amazonaws.com/weizhongjin/VOC2012.zip
