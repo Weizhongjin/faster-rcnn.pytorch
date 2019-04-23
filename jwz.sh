@@ -3,8 +3,9 @@ pip install -r requirements.txt
 cd lib
 python setup.py build develop
 cd ../data
+mkdir imagenet_weights
 cd imagenet_weights
-python pretrain_model.py
+python ../../pretrain_model.py
 cd ..
 git clone https://github.com/pdollar/coco.git
 cd coco/PythonAPI
