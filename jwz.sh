@@ -6,6 +6,8 @@ cd ../data
 mkdir imagenet_weights
 cd imagenet_weights
 python ../../pretrain_model.py
+wget https://s3.amazonaws.com/pytorch/models/resnet50-19c8e357.pth
+mv resnet50-19c8e357.pth resnet50.pth
 cd ..
 git clone https://github.com/pdollar/coco.git
 cd coco/PythonAPI

@@ -219,7 +219,7 @@ def resnet152(pretrained=False):
 
 class resnet(_fasterRCNN):
   def __init__(self, classes, num_layers=101, pretrained=False, class_agnostic=False):
-    self.model_path = 'data/pretrained_model/resnet101_caffe.pth'
+    self.model_path = 'data/imagenet_weights/resnet50.pth'
     self.dout_base_model = 1024
     self.pretrained = pretrained
     self.class_agnostic = class_agnostic
@@ -232,7 +232,7 @@ class resnet(_fasterRCNN):
     if self.pretrained == True:
       print("Loading pretrained weights from %s" %(self.model_path))
       state_dict = torch.load(self.model_path)
-      resnet.load_state_dict({k:v for k,v in state_dict.items() if k in resnet.state_dict()})
+      resnet.load_state_dict({k:v for k,v in state_dict.items() if k in resnet.state_dict()},strict = False)
 
     # Build resnet.
     self.RCNN_base = nn.Sequential(resnet.conv1, resnet.bn1,resnet.relu,
