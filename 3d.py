@@ -181,6 +181,14 @@ max_per_image = 100
 thresh = 0.05
 vis = True
 image_dir = 'images'
+img = cv2.imread(image_dir + '0000000000.png')
+imgInfo = img.shape
+size = (imgInfo[1], imgInfo[0])
+
+fourcc = cv2.VideoWriter_fourcc('M','J','P','G') #opencv3.0
+videoWrite = cv2.VideoWriter( '2.avi', fourcc, 10, size )
+# 写入对象 1 file name 2 编码器 3 帧率 4 尺寸大小
+
 webcam_num = -1
 # Set up webcam or get image directories
 if webcam_num >= 0 :
@@ -368,8 +376,9 @@ while (num_images >= 0):
   if vis and webcam_num == -1:
       # cv2.imshow('test', im2show)
       # cv2.waitKey(0)
-      result_path = os.path.join(image_dir, imglist[num_images][:-4] + "_det.png")
-      cv2.imwrite(result_path, im2show)
+      # result_path = os.path.join(image_dir, imglist[num_images][:-4] + "_det.png")
+      # cv2.imwrite(result_path, im2show)
+      videoWrite.write(im2show)
   else:
       im2showRGB = cv2.cvtColor(im2show, cv2.COLOR_BGR2RGB)
       cv2.imshow("frame", im2showRGB)
@@ -382,3 +391,6 @@ while (num_images >= 0):
 if webcam_num >= 0:
   cap.release()
   cv2.destroyAllWindows()
+
+else:
+  videoWrite.release()
