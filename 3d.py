@@ -343,7 +343,6 @@ while (num_images >= 0):
         # get the input 2dbbox img crop and resize to 224 x 224:
         ########################################################################
               #bbox_2d_img = im2show[int(np.max([0, v_min])):int(v_max), int(np.max([0, u_min])):int(u_max)]
-                  print(np.shape(im2show))
                   bbox_2d_img = im2show[v_min:v_max, u_min:u_max]
                   print('--------')
                   
@@ -360,7 +359,9 @@ while (num_images >= 0):
                   outputs_keypoints = outputs_keypoints.data.cpu().numpy()
                   label_keypoints = np.resize(outputs_keypoints, (8, 2))
                   label_keypoints = label_keypoints*np.array([w, h]) + np.array([u_center, v_center])
-                  print(label_keypoints)
+                  if abs(outputs_distance) < 0.675:
+                        cv2.putText(im2show, 'warning', (10,20),cv2.FONT_HERSHEY_PLAIN,
+                        2.0, (0, 0, 255), thickness=2)
                   im2show = draw_3dbbox_from_keypoints(im2show,label_keypoints)
           #im2show = vis_detections(im2show, pascal_classes[j], cls_dets.cpu().numpy(), 0.5)
           
