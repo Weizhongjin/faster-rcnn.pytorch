@@ -196,6 +196,7 @@ if webcam_num >= 0 :
     num_images = 0
 else:
     imglist = os.listdir(image_dir)
+    imglist.sort(reverse = Ture)
     num_images = len(imglist)
 
 print('Loaded Photo: {} images.'.format(num_images))
