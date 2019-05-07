@@ -1,4 +1,3 @@
-# camera-ready
 
 import torch
 import torch.nn as nn
@@ -8,7 +7,7 @@ import torchvision.models as models
 
 import os
 
-class ImgNet(nn.Module):
+class TransNet(nn.Module):
     def __init__(self, model_id, project_dir):
         super(ImgNet, self).__init__()
 
@@ -18,7 +17,7 @@ class ImgNet(nn.Module):
 
         resnet34 = models.resnet34()
         # load pretrained model:
-        resnet34.load_state_dict(torch.load("../3DOD_thesis/pretrained_models/resnet/resnet34-333f7ec4.pth"))
+        resnet34.load_state_dict(torch.load("../2dto3dmodel/resnet34-333f7ec4.pth"))
         # remove fully connected layer:
         self.resnet34 = nn.Sequential(*list(resnet34.children())[:-2])
 
@@ -52,7 +51,3 @@ class ImgNet(nn.Module):
             os.makedirs(self.model_dir)
             os.makedirs(self.checkpoints_dir)
 
-# x = Variable(torch.randn(32, 3, 224, 224)).cuda()
-# network = ImgNet("ImgNet_test", "/staging/frexgus/imgnet")
-# network = network.cuda()
-# out = network(x)

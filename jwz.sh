@@ -23,5 +23,9 @@ rm trainval.txt
 wget https://s3.amazonaws.com/weizhongjin/txt.zip
 unzip txt.zip
 cd ../../../../..
+mkdir vgg16
+cd vgg16
+mkdir pascal_voc
+cd ..
 
-CUDA_VISIBLE_DEVICES=0 python trainval_net.py --dataset pascal_voc --net vgg16 --bs 12 --nw 1  --cuda
+

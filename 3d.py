@@ -25,7 +25,7 @@ import torch.nn as nn
 import torch.optim as optim
 from datasets_imgnet import DatasetImgNetAugmentation, DatasetImgNetEval, BoxRegressor # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from datasets_imgnet import wrapToPi
-from imgnet import ImgNet
+from transnet import TransNet
 import torchvision.transforms as transforms
 import torchvision.datasets as dset
 from scipy.misc import imread
@@ -139,8 +139,8 @@ else:
 fasterRCNN.load_state_dict(checkpoint['model'])
 if 'pooling_mode' in checkpoint.keys():
     cfg.POOLING_MODE = checkpoint['pooling_mode']
-network = ImgNet("Image-Only_eval_val", project_dir="../3DOD_thesis")
-network.load_state_dict(torch.load("../3DOD_thesis/pretrained_models/model_10_2_epoch_400.pth"))
+network = TransNet()
+network.load_state_dict(torch.load("transfermodel/model_10_2_epoch_400.pth"))
 network = network.cuda()
 
 print('load model successfully!')
@@ -180,7 +180,7 @@ start = time.time()
 max_per_image = 100
 thresh = 0.05
 vis = True
-image_dir = 'images'
+image_dir = 'images/'
 img = cv2.imread(image_dir + '0000000000.png')
 imgInfo = img.shape
 size = (imgInfo[1], imgInfo[0])

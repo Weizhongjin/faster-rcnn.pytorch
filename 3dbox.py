@@ -1,3 +1,5 @@
+import sys 
+sys.path.append(r'2dto3d/')
 from cv2 import cv2 as cv
 import numpy as np
 from kittiloader import calibread, LabelLoader2D3D

@@ -1,7 +1,5 @@
 # camera-ready
 
-import sys
-sys.path.append("../3DOD_thesis/utils")
 from kittiloader import LabelLoader2D3D, calibread, LabelLoader2D3D_sequence # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 
 import torch
